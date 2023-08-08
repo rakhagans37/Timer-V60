@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .navlink{
+        @apply w-7 hover:bg-black active:bg-slate-950
+    }
+    .timer{
+        @apply flex flex-col items-center gap-1
+    }
+    .card{
+        @apply bg-gradient-to-tr from-gray-950 to-gray-800 rounded-xl
+    }
+    .card-details{
+        @apply flex flex-row justify-between p-4
+    }
+    .card-details-left{
+        @apply flex flex-col justify-between gap-7
+    }
+    .card-details-right{
+        @apply flex flex-col justify-between items-end
+    }
+    .h2{
+        @apply text-white font-medium text-3xl
+    }
+    .p{
+        @apply text-white font-normal text-base
+    }
+}
