@@ -17,7 +17,7 @@ function printTimeNode() {
 
         //Memberi class pada element
         divTarget.className = "card";
-        divTargetChild.className = "card-details";
+        divTargetChild.className = "card-details-index";
         divChildLeft.className = "card-details-left";
         divChildRight.className = "card-details-right";
         headingType.className = "h2";
@@ -41,6 +41,4 @@ function printTimeNode() {
         target.appendChild(divTarget);
     }
 }
-
-console.log(JSON.parse(localStorage.getItem("timerCollection")));
 printTimeNode();

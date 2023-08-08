@@ -15,6 +15,9 @@
     .card-details{
         @apply flex flex-row justify-between p-4
     }
+    .card-details-index{
+        @apply flex flex-row justify-between p-4 items-center
+    }
     .card-details-left{
         @apply flex flex-col justify-between gap-7
     }
