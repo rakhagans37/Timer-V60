@@ -16,15 +16,26 @@
             <a href="page/createTimer.html" class="navlink"><img src="../src/img/create.png" alt=""></a>
             <a href="#" class="navlink"><img src="../src/img/pie-chart.png" alt=""></a>
         </div>
-    
+        
         <div class="container flex flex-col px-4 pt-10 gap-8">
-            <div class="flex flex-row">
+            <div class="flex flex-row justify-between items-center">
                 <h1 class="text-black text-2xl font-medium">Create Timer</h1>
+                <button class="w-32 h-10 bg-gradient-to-r from-red-950 to-sky-900 rounded-md text-white" onclick="saveTimerStep()" id="save-steps">Save</button>
+                <button class="w-32 h-10 bg-gradient-to-r from-sky-950 to-sky-900 rounded-md text-white hidden" onclick="saveTimerFinal()" id="save-timer">Save</button>
             </div>
+
             
+            <form action="" class="flex flex-col gap-4 hidden" id="final-save-timer">
+                <div class="flex flex-col gap-1">
+                    <label for="">Timer Name:</label>
+                    <input id="timer-name" type="text" maxlength="20" placeholder="ex : V60 little accidity" class="w-full h-10 rounded-lg p-1 font-medium focus:bg-black focus:text-white placeholder:font-thin" required>
+                </div>
+            </form>
+            
+
             <form action="" class="flex flex-col gap-4" id="timerDetails">
                 <div>
-                    <select name="" id="type" class="w-full h-10 rounded-lg focus:bg-black focus:text-white font-medium">
+                    <select name="" id="type" class="w-full h-10 rounded-lg focus:bg-black focus:text-white font-medium p-1">
                         <option value="blooming">Blooming</option>
                         <option value="jeda">Jeda</option>
                         <option value="putar">Putar</option>
@@ -37,26 +48,28 @@
                 <div class="container grid grid-cols-3 gap-2">
                     <div class="timer">
                         <input type="number" id="hours" min="0" max="23" placeholder="0" onkeypress="if(this.value.length==2) return false; if(this.value > this.max) return false;"
-                        class="h-14 w-full rounded-lg text-center text-xl text-black font-medium focus:bg-black focus:text-white">
+                        class="h-14 w-full rounded-lg text-center text-xl text-black font-medium focus:bg-black focus:text-white focus:ring-2 sm:focus:ring-4 focus:ring-gray-600">
                         <label for="hours">Jam</label>
                     </div>
                     <div class="timer">
                         <input type="number" id="minutes" min="0" max="59" placeholder="0" onkeypress="if(this.value.length==2) return false; if(this.value > this.max) return false;"
-                        class="h-14 w-full rounded-lg text-center text-xl text-black font-medium focus:bg-black focus:text-white">
+                        class="h-14 w-full rounded-lg text-center text-xl text-black font-medium focus:bg-black focus:text-white focus:ring-2 sm:focus:ring-4 focus:ring-gray-600">
                         <label for="minutes">Menit</label>
                     </div>
                     <div class="timer">
                         <input type="number" id="seconds" min="0" max="59" placeholder="0" onkeypress="if(this.value.length==2) return false; if(this.value > this.max) return false;"
-                        class="h-14 w-full rounded-lg text-center text-xl text-black font-medium focus:bg-black focus:text-white" required>
+                        class="h-14 w-full rounded-lg text-center text-xl text-black font-medium focus:bg-black focus:text-white focus:ring-2 sm:focus:ring-4 focus:ring-gray-600" required>
                         <label for="seconds" class="w-max">Detik</label>
                     </div> 
                 </div>
-                <button id="submit" class="w-full shadow-md shadow-gray-500 bg-black text-white rounded-lg h-10">Add</button>
+                <button id="submit" class="w-full shadow-md shadow-gray-500 bg-black text-white rounded-lg h-10 active:bg-gradient-to-tr from-black to-slate-600">Add</button>
             </form>
 
             <section id="newTimerNode" class="flex flex-col gap-4">
             </section>
         </div>
+
+        
     </body>
     <script src="../script/script.js"></script>
 </body>

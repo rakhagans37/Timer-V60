@@ -1,13 +1,20 @@
 // Class & Function
 class timer {
-    constructor(name, desc, node) {
+    constructor(name, node) {
         this.name = name;
-        this.desc = desc;
-        this.node = [];
+        this.node = node;
+        this.totalTime = this.total();
     }
 
-    addNode(newNode) {
-        this.node.push(newNode);
+    total() {
+        let total = 0;
+        for (let i = 0; i < this.node.length; i++) {
+            total +=
+                this.node[i].hours * 3600000 +
+                this.node[i].minutes * 60000 +
+                this.node[i].seconds * 1000;
+        }
+        return total;
     }
 }
 
@@ -65,6 +72,49 @@ function printTimeNode(arrayNode) {
     }
 }
 
+function saveTimerStep() {
+    if (timeNode.length > 0) {
+        //Kembalikan seperti semula
+        document.getElementById("timerDetails").classList.add("hidden");
+        document.getElementById("final-save-timer").classList.remove("hidden");
+        document.getElementById("save-steps").classList.add("hidden");
+        document.getElementById("save-timer").classList.remove("hidden");
+    } else {
+        alert("Timer setting still empty");
+    }
+}
+
+function saveTimerFinal() {
+    //Jika belum pernah menyimpan timer, maka buat ruang penyimpanan nya
+    if (localStorage.getItem("timerCollection") === null) {
+        localStorage.setItem(
+            "timerCollection",
+            JSON.stringify({
+                list: [],
+            })
+        );
+    }
+
+    //Get
+    const timerName = document.getElementById("timer-name").value;
+    const storage = localStorage.getItem("timerCollection");
+
+    //Simpan timer di penyimpanan
+    const json = JSON.parse(storage);
+    json.list.push(new timer(timerName, timeNode));
+
+    localStorage.setItem("timerCollection", JSON.stringify(json));
+
+    //Kembalikan seperti semula
+    document.getElementById("timerDetails").classList.remove("hidden");
+    document.getElementById("final-save-timer").classList.add("hidden");
+    document.getElementById("save-steps").classList.remove("hidden");
+    document.getElementById("save-timer").classList.add("hidden");
+
+    //Pindah halaman
+    window.location = "../index.html";
+}
+
 //When Submit
 let timeNode = [];
 document
@@ -95,5 +145,3 @@ document
 
         printTimeNode(timeNode);
     });
-
-//Print
