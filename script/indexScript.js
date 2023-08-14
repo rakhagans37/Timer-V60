@@ -1,5 +1,6 @@
 function printTimeNode() {
     const json = JSON.parse(localStorage.getItem("timerCollection"));
+
     for (let i = 0; i < json.list.length; i++) {
         //Deklarasi variabel untuk menampung nilai yang akan di print
         const target = document.getElementById("timerCollection");
@@ -9,7 +10,7 @@ function printTimeNode() {
         const divChildRight = document.createElement("div");
         const headingType = document.createElement("h2");
         const pName = document.createElement("p");
-        const aGoto = document.createElement("button");
+        const buttonGoto = document.createElement("button");
         const imageGoTo = document.createElement("img");
         const date = new Date(
             json.list[i].totalTime + new Date().getTimezoneOffset() * 60000
@@ -25,20 +26,29 @@ function printTimeNode() {
         imageGoTo.className = "w-6";
 
         //Memasukkan nilai yang akan di print
-
+        buttonGoto.setAttribute("onclick", `goto(${i})`);
         imageGoTo.src = "/src/img/right arrow.png";
         headingType.textContent = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-        pName.textContent = `${json.list[i].name}`;
+        pName.textContent = `${
+            json.list[i].name == "" ? "No Name" : json.list[i].name
+        }`;
 
         //Proses print ke halaman
-        aGoto.appendChild(imageGoTo);
+        buttonGoto.appendChild(imageGoTo);
         divChildLeft.appendChild(headingType);
         divChildLeft.appendChild(pName);
-        divChildRight.appendChild(aGoto);
+        divChildRight.appendChild(buttonGoto);
         divTargetChild.appendChild(divChildLeft);
         divTargetChild.appendChild(divChildRight);
         divTarget.appendChild(divTargetChild);
         target.appendChild(divTarget);
     }
 }
+
 printTimeNode();
+
+function goto(recipeId) {
+    sessionStorage.setItem("choosenRecipeId", recipeId);
+
+    window.location = "timer.html";
+}
