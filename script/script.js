@@ -9,11 +9,9 @@ class timer {
     total() {
         let total = 0;
         for (let i = 0; i < this.node.length; i++) {
-            total +=
-                this.node[i].hours * 3600000 +
-                this.node[i].minutes * 60000 +
-                this.node[i].seconds * 1000;
+            total += this.node[i].nodeTime;
         }
+
         return total;
     }
 }
@@ -25,6 +23,13 @@ class timerNode {
         this.hours = hours;
         this.minutes = minutes;
         this.seconds = seconds;
+        this.nodeTime = this.total();
+    }
+    total() {
+        const total =
+            this.hours * 3600000 + this.minutes * 60000 + this.seconds * 1000;
+
+        return total;
     }
 }
 
